@@ -210,4 +210,19 @@ class MonthTests: XCTestCase {
         """.data(using: .utf8)!)), encoding: .utf8)!
         XCTAssertEqual(actual, expected)
     }
+
+    func testMarkdown() {
+        let actual: String = Calendar.Month.january.raw(calendar: calendar, year: year).markdown().format()
+        let expected = """
+        |Sun|Mon|Tue|Wed|Thu|Fri|Sat|
+        |--:|--:|--:|--:|--:|--:|--:|
+        |31 |1  |2  |3  |4  |5  |6  |
+        |7  |8  |9  |10 |11 |12 |13 |
+        |14 |15 |16 |17 |18 |19 |20 |
+        |21 |22 |23 |24 |25 |26 |27 |
+        |28 |29 |30 |31 |1  |2  |3  |
+        |4  |5  |6  |7  |8  |9  |10 |
+        """
+        XCTAssertEqual(actual, expected)
+    }
 }

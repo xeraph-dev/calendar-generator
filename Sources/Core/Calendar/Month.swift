@@ -1,4 +1,5 @@
 import Foundation
+import Markdown
 
 extension Calendar {
     enum Month: UInt8, CaseIterable {
@@ -97,5 +98,17 @@ extension Calendar.Month.Raw: RawCalendar {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .sortedKeys
         return try! encoder.encode(self)
+    }
+
+    func markdown() -> Markdown.Document {
+        .init(
+            Markdown.Table(
+                columnAlignments: self.header.map { _ in .right },
+                header: .init(self.header.map { Markdown.Table.Cell(Markdown.Text($0)) }),
+                body: .init(self.body.map { Markdown.Table.Row(
+                    $0.map { Markdown.Table.Cell(Markdown.Text($0.description)) }
+                ) })
+            )
+        )
     }
 }

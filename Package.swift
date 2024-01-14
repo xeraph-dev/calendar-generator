@@ -14,7 +14,9 @@ let package = Package(
     targets: [
         .target(
             name: "CGCore",
-            dependencies: [],
+            dependencies: [
+                .product(name: "Markdown", package: "swift-markdown"),
+            ],
             path: "Sources/Core/"
         ),
         .testTarget(
