@@ -212,7 +212,7 @@ class MonthTests: XCTestCase {
     }
 
     func testMarkdown() {
-        let actual: String = Calendar.Month.january.raw(calendar: calendar, year: year).markdown().format()
+        let actual = Calendar.Month.january.raw(calendar: calendar, year: year).markdown().format()
         let expected = """
         |Sun|Mon|Tue|Wed|Thu|Fri|Sat|
         |--:|--:|--:|--:|--:|--:|--:|
@@ -222,6 +222,41 @@ class MonthTests: XCTestCase {
         |21 |22 |23 |24 |25 |26 |27 |
         |28 |29 |30 |31 |1  |2  |3  |
         |4  |5  |6  |7  |8  |9  |10 |
+        """
+        XCTAssertEqual(actual, expected)
+    }
+
+    func testHtml() {
+        let actual = Calendar.Month.january.raw(calendar: calendar, year: year).html().render()
+        let expected = """
+        <table>\
+        <caption>January 2024</caption>\
+        <thead>\
+        <tr>\
+        <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>\
+        </tr>\
+        </thead>\
+        <tbody>\
+        <tr>\
+        <td>31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>\
+        </tr>\
+        <tr>\
+        <td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>\
+        </tr>\
+        <tr>\
+        <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>\
+        </tr>\
+        <tr>\
+        <td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>\
+        </tr>\
+        <tr>\
+        <td>28</td><td>29</td><td>30</td><td>31</td><td>1</td><td>2</td><td>3</td>\
+        </tr>\
+        <tr>\
+        <td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>\
+        </tr>\
+        </tbody>\
+        </table>
         """
         XCTAssertEqual(actual, expected)
     }

@@ -1,25 +1,7 @@
 import Foundation
-import Markdown
-
-extension Calendar {
-    enum Month: UInt8, CaseIterable {
-        case january = 1
-        case february
-        case march
-        case april
-        case may
-        case june
-        case july
-        case august
-        case september
-        case october
-        case november
-        case december
-    }
-}
 
 extension Calendar.Month {
-    struct Raw: Equatable, Codable {
+    struct Raw: Equatable, Codable, RawCalendar {
         var header: [String]
         var body: [[UInt8]]
 
@@ -90,25 +72,5 @@ extension Calendar.Month {
         }
 
         return .init(calendar: calendar, date: date, body: body)
-    }
-}
-
-extension Calendar.Month.Raw: RawCalendar {
-    func json() -> Data {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .sortedKeys
-        return try! encoder.encode(self)
-    }
-
-    func markdown() -> Markdown.Document {
-        .init(
-            Markdown.Table(
-                columnAlignments: self.header.map { _ in .right },
-                header: .init(self.header.map { Markdown.Table.Cell(Markdown.Text($0)) }),
-                body: .init(self.body.map { Markdown.Table.Row(
-                    $0.map { Markdown.Table.Cell(Markdown.Text($0.description)) }
-                ) })
-            )
-        )
     }
 }
