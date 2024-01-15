@@ -1,7 +1,7 @@
 import Foundation
 import Plot
 
-extension Calendar.Month.Raw {
+public extension Calendar.Month.Raw {
     func html() -> Component {
         return Table(
             caption: TableCaption("\(month) \(year)"),

@@ -1,6 +1,6 @@
 import Foundation
 
-extension Calendar.Month {
+public extension Calendar.Month {
     struct Raw: Equatable, Codable, RawCalendar {
         var header: [String]
         var body: [[UInt8]]

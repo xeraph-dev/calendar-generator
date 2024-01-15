@@ -1,6 +1,6 @@
 import Foundation
 
-extension Calendar {
+public extension Calendar {
     enum Month: UInt8, CaseIterable {
         case january = 1
         case february
@@ -14,5 +14,9 @@ extension Calendar {
         case october
         case november
         case december
+
+        public init?(rawValue: Int) {
+            self.init(rawValue: UInt8(rawValue))
+        }
     }
 }

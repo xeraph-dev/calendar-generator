@@ -1,6 +1,6 @@
 import Foundation
 
-extension Calendar.Month.Raw {
+public extension Calendar.Month.Raw {
     func json() -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .sortedKeys

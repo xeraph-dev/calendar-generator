@@ -1,7 +1,7 @@
 import Foundation
 import Markdown
 
-extension Calendar.Month.Raw {
+public extension Calendar.Month.Raw {
     func markdown() -> Document {
         Document(
             Table(
