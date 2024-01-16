@@ -1,3 +1,4 @@
+import Algorithms
 import Foundation
 
 public extension Calendar.Month {
@@ -16,6 +17,7 @@ public extension Calendar.Month {
 
         init(calendar: Calendar, date: Date, body: [[UInt8]]) {
             self.header = calendar.shortWeekdaySymbols
+            self.header.rotate(toStartAt: calendar.firstWeekday - 1)
             self.body = body
 
             self.year = calendar.component(.year, from: date)
