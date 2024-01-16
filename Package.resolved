@@ -226,15 +226,6 @@
       }
     },
     {
-      "identity" : "vercel",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swift-cloud/Vercel.git",
-      "state" : {
-        "revision" : "2e1defbea789dd48733799f53e981ea49a44f346",
-        "version" : "2.1.0"
-      }
-    },
-    {
       "identity" : "websocket-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/websocket-kit.git",
