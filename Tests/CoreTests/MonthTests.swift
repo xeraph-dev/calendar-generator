@@ -1,3 +1,4 @@
+import Algorithms
 @testable import CGCore
 import Foundation
 import XCTest
@@ -5,7 +6,7 @@ import XCTest
 class MonthTests: XCTestCase {
     var calendar: Calendar {
         var calendar: Calendar = .init(identifier: .gregorian)
-        calendar.firstWeekday = .init(Day.sunday.rawValue)
+        calendar.firstWeekday = .init(Calendar.Day.sunday.rawValue)
         calendar.timeZone = .init(identifier: "America/Havana")!
         calendar.locale = .init(identifier: "en_US")
         return calendar
@@ -47,7 +48,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.january.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([31] + (1...31) + (1...10)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([31] + (1...31) + (1...10)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -57,7 +58,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.february.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (28...31) + (1...29) + (1...9)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (28...31) + (1...29) + (1...9)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -67,7 +68,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.march.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (25...29) + (1...31) + (1...6)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (25...29) + (1...31) + (1...6)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -77,7 +78,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.april.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([31] + (1...30) + (1...11)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([31] + (1...30) + (1...11)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -87,7 +88,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.may.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (28...30) + (1...31) + (1...8)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (28...30) + (1...31) + (1...8)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -97,7 +98,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.june.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (26...31) + (1...30) + (1...6)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (26...31) + (1...30) + (1...6)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -107,7 +108,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.july.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([30] + (1...31) + (1...10)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([30] + (1...31) + (1...10)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -117,7 +118,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.august.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (28...31) + (1...31) + (1...7)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (28...31) + (1...31) + (1...7)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -127,7 +128,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.september.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (1...30) + (1...12)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (1...30) + (1...12)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -137,7 +138,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.october.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (29...30) + (1...31) + (1...9)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (29...30) + (1...31) + (1...9)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -147,7 +148,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.november.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (27...31) + (1...30) + (1...7)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (27...31) + (1...30) + (1...7)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -157,7 +158,7 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.december.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (1...31) + (1...11)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (1...31) + (1...11)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -168,19 +169,19 @@ class MonthTests: XCTestCase {
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.january.raw(calendar: calendar, day: day, year: 2025),
-            .init(calendar: calendar, date: date, body: ([] + (29...31) + (1...31) + (1...8)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (29...31) + (1...31) + (1...8)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
     func testRawJanuaryFirstDayMonday() {
         var calendar = calendar
-        calendar.firstWeekday = .init(Day.monday.rawValue)
+        calendar.firstWeekday = .init(Calendar.Day.monday.rawValue)
         var dateComps = dateComps
         dateComps.month = .init(Calendar.Month.january.rawValue)
         let date = calendar.date(from: dateComps)!
         XCTAssertEqual(
             Calendar.Month.january.raw(calendar: calendar, day: day, year: year),
-            .init(calendar: calendar, date: date, body: ([] + (1...31) + (1...11)).chunks(7))
+            .init(calendar: calendar, date: date, body: ([] + (1...31) + (1...11)).chunks(ofCount: 7).map { $0.map { .init($0) }})
         )
     }
 
@@ -230,31 +231,19 @@ class MonthTests: XCTestCase {
         let actual = Calendar.Month.january.raw(calendar: calendar, year: year).html().render()
         let expected = """
         <table>\
-        <caption>January 2024</caption>\
+        <caption>\
+        <div><span style="float: left">January 2024</span><span style="float: right">en_US</span></div><span style="float: right">America/Havana</span>\
+        </caption>\
         <thead>\
-        <tr>\
-        <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>\
-        </tr>\
+        <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>\
         </thead>\
         <tbody>\
-        <tr>\
-        <td>31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>\
-        </tr>\
-        <tr>\
-        <td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>\
-        </tr>\
-        <tr>\
-        <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>\
-        </tr>\
-        <tr>\
-        <td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>\
-        </tr>\
-        <tr>\
-        <td>28</td><td>29</td><td>30</td><td>31</td><td>1</td><td>2</td><td>3</td>\
-        </tr>\
-        <tr>\
-        <td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>\
-        </tr>\
+        <tr><td>31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>\
+        <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>\
+        <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>\
+        <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>\
+        <tr><td>28</td><td>29</td><td>30</td><td>31</td><td>1</td><td>2</td><td>3</td></tr><tr>\
+        <td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>\
         </tbody>\
         </table>
         """

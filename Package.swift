@@ -18,6 +18,7 @@ let package = Package(
 //        .package(name: "Vercel", path: "../swift-cloud/Vercel"),
         .package(url: "https://github.com/swift-cloud/Vercel.git", from: "2.1.0"),
         .package(url: "https://github.com/vapor/vapor.git", from: "4.91.1"),
+        .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
     ],
     targets: [
         .executableTarget(
@@ -42,12 +43,16 @@ let package = Package(
             dependencies: [
                 .product(name: "Markdown", package: "swift-markdown"),
                 .product(name: "Plot", package: "plot"),
+                .product(name: "Algorithms", package: "swift-algorithms"),
             ],
             path: "Sources/Core/"
         ),
         .testTarget(
             name: "CoreTests",
-            dependencies: ["CGCore"]
+            dependencies: [
+                "CGCore",
+                .product(name: "Algorithms", package: "swift-algorithms"),
+            ]
         ),
     ]
 )
